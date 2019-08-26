@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
-import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
+
+import { auth } from 'firebase/app';
+import * as firebase from 'firebase/app';
+import {Observable} from 'rxjs/Rx';
+import { from } from 'rxjs';
 
 
 @Injectable({
@@ -11,11 +14,11 @@ import 'rxjs/Rx';
 })
 export class AuthService {
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public afsAuth: AngularFireAuth) { }
 
     signupUser(email:string, pass: string){
     return new Promise((resolve, reject)=>{
-      this.afAuth.auth.createUserWithEmailAndPassword(email, pass)
+      this.afsAuth.auth.createUserWithEmailAndPassword(email, pass)
       .then(userData => resolve(userData),
       err => reject (err));
     });
@@ -23,15 +26,23 @@ export class AuthService {
 
     loginUser(email:string, pass: string){
       return new Promise((resolve, reject)=>{
-        this.afAuth.auth.signInWithEmailAndPassword(email, pass)
+        this.afsAuth.auth.signInWithEmailAndPassword(email, pass)
         .then(userData => resolve(userData),
         err => reject (err));
       });
       }
+
+      loginFacebookUser(){
+        return this.afsAuth.auth.signInWithPopup(new auth.FacebookAuthProvider())
+      }
+      
+      loginGoogleUser(){
+        return this.afsAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+      }
       getAuth(){
-      return this.afAuth.authState.map(auth => auth);
+      return this.afsAuth.authState.map(auth => auth);
     }
     logout(){
-    return this.afAuth.auth.signOut();
+    return this.afsAuth.auth.signOut();
     }
 }

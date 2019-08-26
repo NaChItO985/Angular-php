@@ -12,8 +12,8 @@ import { auth } from 'firebase/app';
 })
 export class LoginComponent implements OnInit {
 
-  public email: string;
-  public password: string;
+  public email: string='';
+  public password: string='';
   public user: string;
 
   constructor(
@@ -26,40 +26,32 @@ export class LoginComponent implements OnInit {
   }
 
   onloginFacebookUser(){
-    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider()).then((res) => {
-      this.router.navigate(['/adminpage']);
-    }).catch((err) => {
-      console.log(err);
-      this.router.navigate(['/login']);
-    })
-    
+    //this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider()).then((res) => {
+      this.authService.loginFacebookUser().then((res) =>{
+        console.log('resUser', res)
+        this.onLoginRedirect();
+      } ).catch((err) => console.log('err', err.message));  
   }
-  
   onloginGoogleUser(){
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then((res) => {
-      this.router.navigate(['/adminpage']);
-    }).catch((err) => {
-      console.log(err);
-      this.router.navigate(['/login']);
+    //this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then((res) => {
+      this.authService.loginGoogleUser().then((res) =>{
+        this.onLoginRedirect();
+      }).catch((err) => {
+      console.log('err', err.message);
     })  
   }
-
-  onloginTwitterUser(){
-    this.afAuth.auth.signInWithPopup(new auth.TwitterAuthProvider()).then((res) => {
-      this.router.navigate(['/adminpage']);
-    }).catch((err) => {
-      console.log(err);
-      this.router.navigate(['/login']);
-    })
-  }
-  
   onSubmitLogin(){
     this.authService.loginUser(this.email, this.password).then((res) => {
-        this.router.navigate(['/adminpage']);
+        this.onLoginRedirect();
     }).catch((err) => {
-      console.log(err);
+      console.log(err.message);
       this.router.navigate(['/login']);
     })
   }
-
+ onLogout(){
+   this.authService.logout();
+ }
+ onLoginRedirect() :void{
+   this.router.navigate(['/adminpage']);
+ }
 }
