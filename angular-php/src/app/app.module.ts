@@ -15,7 +15,12 @@ import { AdminpageComponent } from './components/adminpage/adminpage.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { IndexComponent } from './components/index/index.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,10 @@ import { AuthService } from './services/auth.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
