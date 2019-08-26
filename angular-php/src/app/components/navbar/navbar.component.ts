@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 
@@ -10,27 +11,30 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  public isLogin: boolean;
+  public isLogged: boolean = false;
   public username: string;
   public emailuser: string;
 
-  constructor(
-    public authService: AuthService
-  ) { }
+  constructor(public authService: AuthService, public afAuth: AngularFireAuth) { }
 
-  ngOnInit() {
-    this.authService.getAuth().subscribe( auth =>{
-      if(auth){
-        this.isLogin=true,
+  ngOnInit() { 
+    this.getCurrentUser();
+  }
+
+  getCurrentUser(){
+      this.authService.getAuth().subscribe( auth =>{
+      if (auth) {
+        console.log('User logged');
+        this.isLogged=true,
         this.username=auth.displayName;
         this.emailuser=auth.email;
       } else{
-        this.isLogin=false;
+        console.log('NOT User logged');
+        this.isLogged=false;
       }
     })
   }
-
   onClickLogout(){
-    this.authService.logout();
+    this.afAuth.auth.signOut();
   }
 }

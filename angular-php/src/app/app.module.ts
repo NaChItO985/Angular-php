@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 
 
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -17,10 +15,11 @@ import { IndexComponent } from './components/index/index.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
-import { from } from 'rxjs';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,8 @@ import { from } from 'rxjs';
     LoginComponent,
     AdminpageComponent,
     NotFoundComponent,
-    IndexComponent
+    IndexComponent,
+    UsersComponent
     
   ],
   imports: [
@@ -40,9 +40,8 @@ import { from } from 'rxjs';
     FormsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    
   ],
-  providers: [AuthService],
+  providers: [AuthService, AngularFireAuth ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
