@@ -20,6 +20,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
 import { UsersComponent } from './components/users/users.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { UsersComponent } from './components/users/users.component';
     AdminpageComponent,
     NotFoundComponent,
     IndexComponent,
-    UsersComponent
+    UsersComponent,
+    ProfileComponent
     
   ],
   imports: [
@@ -40,6 +43,7 @@ import { UsersComponent } from './components/users/users.component';
     FormsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+
   ],
   providers: [AuthService, AngularFireAuth ],
   bootstrap: [AppComponent]

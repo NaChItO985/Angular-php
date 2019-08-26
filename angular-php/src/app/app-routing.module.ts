@@ -7,6 +7,7 @@ import { AdminpageComponent } from './components/adminpage/adminpage.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { IndexComponent } from './components/index/index.component';
 import { UsersComponent } from './components/users/users.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 const routes: Routes = [  
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path:'adminpage' , component: AdminpageComponent },
     { path:'signup', component: SignupComponent},
     { path:'index', component: IndexComponent},
+    { path:'profile', component: ProfileComponent},
     { path: 'users', component: UsersComponent},
     { path: '**', component: NotFoundComponent}
 ];
