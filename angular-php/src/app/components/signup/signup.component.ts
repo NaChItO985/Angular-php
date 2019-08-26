@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
     onSubmitAddUser(){
-      this.authService.signupUser(this.email, this.password, this.user)
+      this.authService.signupUser(this.email, this.password)
       .then((res) => { 
       }).catch((err) => {
         console.log(err);

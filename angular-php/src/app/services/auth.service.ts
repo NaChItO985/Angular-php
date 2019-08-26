@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(public afAuth: AngularFireAuth) { }
 
-    signupUser(email:string, pass: string, user: string){
+    signupUser(email:string, pass: string){
     return new Promise((resolve, reject)=>{
       this.afAuth.auth.createUserWithEmailAndPassword(email, pass)
       .then(userData => resolve(userData),
@@ -20,7 +20,7 @@ export class AuthService {
     });
     }
 
-    loginUser(email:string, pass: string, user: string){
+    loginUser(email:string, pass: string){
       return new Promise((resolve, reject)=>{
         this.afAuth.auth.signInWithEmailAndPassword(email, pass)
         .then(userData => resolve(userData),
