@@ -16,6 +16,7 @@ import { IndexComponent } from './components/index/index.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
@@ -45,7 +46,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
 
   ],
-  providers: [AuthService, AngularFireAuth ],
+  providers: [AuthService, AngularFireAuth, AngularFirestore ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
