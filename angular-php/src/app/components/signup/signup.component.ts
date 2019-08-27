@@ -17,7 +17,8 @@ export class SignupComponent implements OnInit {
 
   constructor( public authService: AuthService, private router: Router, private storage: AngularFireStorage){  
   }
-  
+  public imageUser = 'any';
+
   @ViewChild('imageUser') inputImageUser: ElementRef;
   @ViewChild('btnClear') btnClear: ElementRef;
   public email: string='';
