@@ -8,6 +8,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { IndexComponent } from './components/index/index.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { DetailsProductsComponent } from './components/details-products/details-products.component';
 
 
 const routes: Routes = [  
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path:'index', component: IndexComponent},
     { path:'profile', component: ProfileComponent},
     { path: 'users', component: UsersComponent},
+    { path: 'products/:id', component: DetailsProductsComponent},
     { path: '**', component: NotFoundComponent}
 ];
 

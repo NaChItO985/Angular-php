@@ -15,6 +15,8 @@ export class DataApiService {
   }
   private productsCollection: AngularFirestoreCollection<ProductInterface>;
   private products: Observable<ProductInterface[]>  
+  private productsDoc: AngularFirestoreDocument<ProductInterface>;
+  private product: Observable<ProductInterface>;
 
   getAllProducts(){  
     return this.products = this.productsCollection.snapshotChanges()
@@ -25,6 +27,18 @@ export class DataApiService {
         return data;
       });
     });
+  }
+  getOneProduct(idproduct: string){ 
+    this.productsDoc = this.afs.doc<ProductInterface>(`products/${idproduct}`);
+    return this.product = this.productsDoc.snapshotChanges().map(action =>{
+      if(action.payload.exists == false){
+        return null;
+      }else{
+        const data = action.payload.data() as ProductInterface;
+        data.id = action.payload.id;
+        return data;
+      }
+    })
   }
   addProduct(){ }
   updateProduct(){ }

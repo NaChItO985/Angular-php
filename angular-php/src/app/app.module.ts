@@ -23,6 +23,7 @@ import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
 import { UsersComponent } from './components/users/users.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { DetailsProductsComponent } from './components/details-products/details-products.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     NotFoundComponent,
     IndexComponent,
     UsersComponent,
-    ProfileComponent
+    ProfileComponent,
+    DetailsProductsComponent
     
   ],
   imports: [
