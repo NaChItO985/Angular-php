@@ -39,6 +39,7 @@ export class AuthService {
       loginGoogleUser(){
         return this.afsAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
       }
+      
       getAuth(){
       return this.afsAuth.authState.map(auth => auth);
     }

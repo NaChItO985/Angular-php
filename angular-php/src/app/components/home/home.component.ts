@@ -8,13 +8,10 @@ import { DataApiService } from 'src/app/services/data-api.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private dataApi: DataApiService) { }
-  public products = [];
-  public product = '';
+  constructor() { }
+
   ngOnInit() {
-    this.dataApi.getAllProducts().subscribe(products => {
-      console.log('PRODUCTS', products);
-    })
+    
   }
 
 }

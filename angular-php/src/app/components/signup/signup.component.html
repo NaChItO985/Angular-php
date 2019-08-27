@@ -11,6 +11,18 @@
                             <div class="form-group">
                                 <input type="password" name="password" id="password" [(ngModel)]="password" class="form-control" required placeholder="Password">
                             </div>
+                            <hr>
+                            <div class="card">
+                            <div class="formg-roup d-flex justify-content-around charge card-body">
+                                <h6>Choose your picture:</h6>
+                                <input type="file" accept=".png, .jpg" (change)="onUpload($event)">
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="(uploadPercent | async) +'%'"></div>
+                              </div>
+                            <input #imageUser type="hidden" [value]="urlImage | async">
+                            </div>
+                            <br>
                                 <div class="form-group">
                                     <select class="custom-select">
                                         <option selected="">-- Select the kind of user --</option>
@@ -18,7 +30,10 @@
                                         <option value="2">User</option>
                                     </select>
                                 </div>
-                                <input type="submit" value="Sign up" class="btn btn-primary btn-block btn-lg">
+                                <input type="submit" value="Sign up" class="btn btn-primary btn-block btn-lg" *ngIf="urlImage | async; else btnDisabled">
+                                <ng-template #btnDisabled>
+                                    <input type="submit" disabled=true value="Sign up" class="btn btn-primary btn-block btn-lg">
+                                </ng-template>
                         </form>
                     </div>
                 </div>

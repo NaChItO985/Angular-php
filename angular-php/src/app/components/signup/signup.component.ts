@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
+import { ObserveOnSubscriber } from 'rxjs/internal/operators/observeOn';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-signup',
@@ -8,24 +13,50 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  public email: string;
-  public password: string;
-  public user: string;
 
-  constructor(
-    public authService: AuthService,
-    public router: Router
-  ) { }
+  constructor( public authService: AuthService, private router: Router, private storage: AngularFireStorage){  
+  }
+  @ViewChild('imageUser') inputImageUser: ElementRef;
+  public email: string='';
+  public password: string='';
+  
+  
+
+  uploadPercent: Observable<number>;
+  urlImage: Observable<string>;
+  user: any;
+
+  
+  
 
   ngOnInit() {
   }
+
+    onUpload(e){
+      const id = Math.random().toString(36).substring(2);
+      const file = e.target.files[0];
+      const filepath = `uploads/profile_${id}`;
+      const ref = this.storage.ref(filepath);
+      const task = this.storage.upload(filepath, file);
+      this.uploadPercent = task.percentageChanges();
+      task.snapshotChanges().pipe(finalize(()=> this.urlImage = ref.getDownloadURL())).subscribe();
+    }
+
     onSubmitAddUser(){
       this.authService.signupUser(this.email, this.password)
       .then((res) => { 
-        this.router.navigate(['./admin']);
+        this.authService.getAuth().subscribe( user=>{    
+        if(user){
+            user.updateProfile({
+            displayName: '',
+            photoURL: this.inputImageUser.nativeElement.value
+          }).then(()=>{
+          }).catch((error)=>{console.log('error', error);})
+        }
+        })
       }).catch((err) => {
         console.log('err', err.message);
-      }) 
+    }) 
   }  
   onloginFacebookUser(){
     //this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider()).then((res) => {

@@ -20,7 +20,8 @@ export class ProfileComponent implements OnInit {
     this.authService.getAuth().subscribe(user => {
       if(user){
         this.user.name = user.displayName;
-        this.user.email = user.email;        
+        this.user.email = user.email;
+        this.user.photoUrl = user.photoURL;        
         this.providerId = user.providerData[0].providerId;
       }
     })

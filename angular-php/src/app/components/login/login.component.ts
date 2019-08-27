@@ -52,6 +52,6 @@ export class LoginComponent implements OnInit {
    this.authService.logout();
  }
  onLoginRedirect() :void{
-   this.router.navigate(['/adminpage']);
+   this.router.navigate(['/users']);
  }
 }
