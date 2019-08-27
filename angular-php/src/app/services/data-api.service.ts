@@ -40,8 +40,18 @@ export class DataApiService {
       }
     })
   }
-  addProduct(){ }
-  updateProduct(){ }
-  deleteProduct(){}
+  addProduct(product: ProductInterface):void{ 
+      this.productsCollection.add(product);
+  }
+  updateProduct(product: ProductInterface):void{
+    let idProduct = product.id;
+    this.productsDoc = this.afs.doc<ProductInterface>(`products/${idProduct}`);
+    this.productsDoc.update(product);
+   }
+  deleteProduct(idProduct: ProductInterface):void{
+    this.productsDoc = this.afs.doc<ProductInterface>(`products/${idProduct}`);
+    this.productsDoc.delete();
+
+  }
 
 }
