@@ -24,6 +24,8 @@ import { AuthService } from './services/auth.service';
 import { UsersComponent } from './components/users/users.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DetailsProductsComponent } from './components/details-products/details-products.component';
+import { ListProductsComponent } from './components/admin/list-products/list-products.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { DetailsProductsComponent } from './components/details-products/details-
     IndexComponent,
     UsersComponent,
     ProfileComponent,
-    DetailsProductsComponent
+    DetailsProductsComponent,
+    ListProductsComponent,
+    ModalComponent
     
   ],
   imports: [

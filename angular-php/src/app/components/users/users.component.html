@@ -4,7 +4,7 @@
         <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let product of products">
           <div class="card_book">
             <div class="card">
-              <div class="card-body text-center">
+              <div class="card-body text-center" id="card">
                 <p>
                   <img class="img-fluid" src="{{product.image}}" alt="{{product.name}}">
                 </p>
@@ -12,11 +12,15 @@
                 <p class="card-text">
                   {{product.description }}
                 </p>
-                <div class="container-precio-idioma">
+                
+                <div class="container-precio">
                   <p class="badge badge-info">
+                    <label for="price">Price: </label>    
                     {{product.price}}€
                   </p>
+                  <p> </p>
                   <p class="badge badge-info">
+                    <label for="type">Type: </label>    
                     {{product.type}}
                   </p>
                 </div>

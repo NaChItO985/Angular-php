@@ -5,4 +5,5 @@ export interface ProductInterface{
     description?: string;
     price?: string;
     image?: string;
+    userUid?: string;
 }

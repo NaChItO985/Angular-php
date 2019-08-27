@@ -9,6 +9,7 @@ import { IndexComponent } from './components/index/index.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DetailsProductsComponent } from './components/details-products/details-products.component';
+import { ListProductsComponent } from './components/admin/list-products/list-products.component';
 
 
 const routes: Routes = [  
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path:'signup', component: SignupComponent},
     { path:'index', component: IndexComponent},
     { path:'profile', component: ProfileComponent},
+    { path:'admin/list-products', component: ListProductsComponent},
     { path: 'users', component: UsersComponent},
     { path: 'products/:id', component: DetailsProductsComponent},
     { path: '**', component: NotFoundComponent}
