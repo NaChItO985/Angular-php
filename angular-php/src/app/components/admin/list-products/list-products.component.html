@@ -21,15 +21,20 @@
                     <td>{{product.description}}</td>
                     <td>{{product.type}}</td>
                     <td>{{product.price}}</td>
-                    <td>
-
+                    <td *ngIf="product.userUid == userUid || isAdmin == true; else noOwner">
                         <button class="btn btn-info" (click)="onPreUpdateBook(product)"  data-toggle="modal" data-target="#modalProduct">Update</button><span class="space">..</span>
+                    </td>
+                    <td *ngIf="isAdmin == true; else noAdmin">
                         <button class="btn btn-danger" (click)="onDeleteBook(product.id)">Delete</button>                        
                     </td>
+                    <ng-template #noAdmin>
+                    </ng-template>
+                    <ng-template #noOwner>
+                    </ng-template>
                 </tr>
             </tbody>
         </table>
     </div>
 </section>
 </div>
-<app-modal></app-modal>
+<app-modal [userUid]="userUid"></app-modal>

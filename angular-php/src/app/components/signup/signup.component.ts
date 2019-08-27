@@ -5,6 +5,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { ObserveOnSubscriber } from 'rxjs/internal/operators/observeOn';
 import { Observable } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class SignupComponent implements OnInit {
   }
   
   @ViewChild('imageUser') inputImageUser: ElementRef;
+  @ViewChild('btnClear') btnClear: ElementRef;
   public email: string='';
   public password: string='';
   
@@ -53,6 +55,7 @@ export class SignupComponent implements OnInit {
             photoURL: this.inputImageUser.nativeElement.value
           }).then(()=>{
           }).catch((error)=>{console.log('error', error);})
+          this.onLoginRedirect();
         }
         })
       }).catch((err) => {
@@ -62,7 +65,6 @@ export class SignupComponent implements OnInit {
   onloginFacebookUser(){
     //this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider()).then((res) => {
       this.authService.loginFacebookUser().then((res) =>{
-        console.log('resUser', res)
         this.onLoginRedirect();
       } ).catch((err) => console.log('err', err.message));  
   }
@@ -75,6 +77,7 @@ export class SignupComponent implements OnInit {
     })  
   }
   onLoginRedirect() :void{
-    this.router.navigate(['/adminpage']);
+    this.router.navigate(['/users']);
   } 
+
 }

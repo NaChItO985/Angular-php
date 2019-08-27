@@ -22,20 +22,20 @@ export class ListProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getListProducts();
-    /*this.getCurrentUser();*/
+    this.getCurrentUser();
   }
 
-  /*getCurrentUser() {
+  getCurrentUser() {
     this.authService.getAuth().subscribe(auth => {
       if (auth) {
         this.userUid = auth.uid;
         this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
           this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
-          // this.isAdmin = true;
         })
       }
     })
-  }*/
+  }
+
   getListProducts() {
     this.dataApi.getAllProducts()
       .subscribe(products => {
@@ -54,3 +54,4 @@ export class ListProductsComponent implements OnInit {
     this.dataApi.selectedProduct = Object.assign({}, product);
   }
 }
+

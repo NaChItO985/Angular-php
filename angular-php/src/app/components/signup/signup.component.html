@@ -4,7 +4,7 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <h1>Sign Up</h1>
-                        <form (submit)="onSubmitAddUser()">                                
+                        <form group="signup" (submit)="onSubmitAddUser()">                                
                             <div class="form-group">
                                 <input type="email" name="email" id="email" [(ngModel)]="email" class="form-control" required placeholder="Email">
                             </div>
@@ -27,10 +27,12 @@
                                     <select class="custom-select">
                                         <option selected="">-- Select the kind of user --</option>
                                         <option value="1">Admin</option>
-                                        <option value="2">User</option>
+                                        <option value="2">Editor</option>
+                                        <option value="3">Guest</option>
                                     </select>
                                 </div>
-                                <input type="submit" value="Sign up" class="btn btn-primary btn-block btn-lg" *ngIf="urlImage | async; else btnDisabled">
+                                <input type="submit" value="Sign up" class="btn btn-primary btn-block btn-lg" *ngIf="urlImage | async; else btnDisabled"
+                                    >
                                 <ng-template #btnDisabled>
                                     <input type="submit" disabled=true value="Sign up" class="btn btn-primary btn-block btn-lg">
                                 </ng-template>

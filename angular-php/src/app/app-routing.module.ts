@@ -10,18 +10,19 @@ import { UsersComponent } from './components/users/users.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DetailsProductsComponent } from './components/details-products/details-products.component';
 import { ListProductsComponent } from './components/admin/list-products/list-products.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [  
     { path:'' , component: HomeComponent }, 
-    { path:'login' , component: LoginComponent }, 
-    { path:'adminpage' , component: AdminpageComponent },
+    { path:'login' , component: LoginComponent}, 
+    { path:'adminpage' , component: AdminpageComponent, canActivate: [AuthGuard]  },
     { path:'signup', component: SignupComponent},
-    { path:'index', component: IndexComponent},
-    { path:'profile', component: ProfileComponent},
-    { path:'admin/list-products', component: ListProductsComponent},
-    { path: 'users', component: UsersComponent},
-    { path: 'products/:id', component: DetailsProductsComponent},
+    { path:'index', component: IndexComponent,  canActivate: [AuthGuard] },
+    { path:'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path:'admin/list-products', component: ListProductsComponent,  canActivate: [AuthGuard] },
+    { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+    { path: 'products/:id', component: DetailsProductsComponent,  canActivate: [AuthGuard] },
     { path: '**', component: NotFoundComponent}
 ];
 
