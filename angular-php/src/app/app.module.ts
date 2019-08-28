@@ -25,7 +25,9 @@ import { UsersComponent } from './components/users/users.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DetailsProductsComponent } from './components/details-products/details-products.component';
 import { ListProductsComponent } from './components/admin/list-products/list-products.component';
-import { ModalComponent } from './components/modal/modal.component';
+import { ModalComponent } from './components/modals/modal/modal.component';
+import { CreateUsersComponent } from './components/admin/create-users/create-users.component';
+import { ModalUsersComponent } from './components/modals/modal-users/modal-users.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { ModalComponent } from './components/modal/modal.component';
     ProfileComponent,
     DetailsProductsComponent,
     ListProductsComponent,
-    ModalComponent
+    ModalComponent,
+    CreateUsersComponent,
+    ModalUsersComponent
     
   ],
   imports: [

@@ -22,15 +22,6 @@
                               </div>
                             <input #imageUser type="hidden" [value]="urlImage | async">
                             </div>
-                            <br>
-                                <div class="form-group">
-                                    <select class="custom-select">
-                                        <option selected="">-- Select the kind of user --</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Editor</option>
-                                        <option value="3">Guest</option>
-                                    </select>
-                                </div>
                                 <input type="submit" value="Sign up" class="btn btn-primary btn-block btn-lg" *ngIf="urlImage | async; else btnDisabled"
                                     >
                                 <ng-template #btnDisabled>

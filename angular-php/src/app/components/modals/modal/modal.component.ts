@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
-import { DataApiService } from '../../services/data-api.service';
-import { ProductInterface } from '../../models/product';
+import { DataApiService } from '../../../services/data-api.service';
+import { ProductInterface } from '../../../models/product';
 import { NgForm } from '@angular/forms';
 
 @Component({

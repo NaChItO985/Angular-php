@@ -11,14 +11,19 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class NavbarComponent implements OnInit {
 
+  public isAdmin: boolean;
   public isLogged: boolean = false;
   public username: string;
   public emailuser: string;
 
   constructor(public authService: AuthService, public afAuth: AngularFireAuth) { }
-
+  
+  public userUid: string = null;
+  
   ngOnInit() { 
     this.getCurrentUser();
+    this.getCurrentUserAdmin();
+    
   }
 
   getCurrentUser(){
@@ -29,6 +34,17 @@ export class NavbarComponent implements OnInit {
         this.emailuser=auth.email;
       } else{
         this.isLogged=false;
+      }
+    })
+  }
+
+  getCurrentUserAdmin() {
+    this.authService.getAuth().subscribe(auth => {
+      if (auth) {
+        this.userUid = auth.uid;
+        this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
+          this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
+        })
       }
     })
   }

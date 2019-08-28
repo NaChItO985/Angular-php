@@ -11,6 +11,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { DetailsProductsComponent } from './components/details-products/details-products.component';
 import { ListProductsComponent } from './components/admin/list-products/list-products.component';
 import { AuthGuard } from './guards/auth.guard';
+import { CreateUsersComponent } from './components/admin/create-users/create-users.component';
 
 
 const routes: Routes = [  
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path:'index', component: IndexComponent,  canActivate: [AuthGuard] },
     { path:'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path:'admin/list-products', component: ListProductsComponent,  canActivate: [AuthGuard] },
+    { path:'admin/create-users', component: CreateUsersComponent,  canActivate: [AuthGuard] },
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
     { path: 'products/:id', component: DetailsProductsComponent,  canActivate: [AuthGuard] },
     { path: '**', component: NotFoundComponent}

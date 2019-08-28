@@ -21,8 +21,12 @@ export class SignupComponent implements OnInit {
 
   @ViewChild('imageUser', {static: false}) inputImageUser: ElementRef;
   @ViewChild('btnClear', {static: false}) btnClear: ElementRef;
+
+
   public email: string='';
   public password: string='';
+  
+
   
   
 
