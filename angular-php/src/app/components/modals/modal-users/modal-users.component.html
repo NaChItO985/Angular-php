@@ -2,33 +2,44 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-            {{!this.dataApi.selectedProduct.id ? 'Create User' : 'Update User'}}
+        <h5 class="modal-tittle" id="exampleModalLabel">
+            {{!this.dataApi.selectedUser.id ? 'Create User' : 'Update User'}}
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form name="formUser" #formUser="ngForm" (ngSubmit)="onSaveUser(formUser)">
+            <input type="hidden" name='id' [(ngModel)]="this.dataApi.selectedUser.id">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Name:</label>
-            <input type="text" class="form-control" id="name" placeholder="Name">
+            <input type="text" class="form-control" name="name" [(ngModel)]="this.dataApi.selectedUser.name">
           </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                <label for="email">Email address: </label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="this.dataApi.selectedUser.email">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="password">Password: </label>
+                    <input type="password" class="form-control" name="type" [(ngModel)]="this.dataApi.selectedUser.password">
             </div>
+            <div class="form-group">
+              <label for="roles">Roles: </label>
+                      <select class="form-control" name="roles">
+                      <option>Editor</option>
+                      <option>Guest</option>                      
+                </select>
+              </div>
         </form>
         </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnClose>Close</button>
+        <button type="submit" class="btn btn-primary">Save User</button>
       </div>
     </div>
   </div>
 </div>
+

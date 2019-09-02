@@ -14,9 +14,28 @@
                                     <th scope="col">&nbsp;</th>     
                                 </tr>
                             </thead>
+                            <tbody>
+                                <tr *ngFor="let user of users; index as i">
+                                    <th scope="row">{{i+1}}</th>
+                                    <td>{{user.name}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.role}}</td>
+                                    <td *ngIf="isAdmin == true; else noOwner ">
+                                        <button class="btn btn-info" (click)="onPreUpdateUser(user)"  data-toggle="modal" data-target="#modalUsers">Update</button>
+                                    </td>
+                                    <td *ngIf="isAdmin == true; else noAdmin">
+                                        <button class="btn btn-danger" (click)="onDeleteUser(user.id)">Delete</button>                        
+                                    </td>
+                                    <ng-template #noAdmin>
+                                    </ng-template>
+                                    <ng-template #noOwner>
+                                        <app-not-found></app-not-found>
+                                    </ng-template>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </section>
                 </div>
-<app-modal-users></app-modal-users>
+<app-modal-users [userUid]="userUid"></app-modal-users>
 </div>
