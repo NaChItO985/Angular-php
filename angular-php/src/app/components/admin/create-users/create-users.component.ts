@@ -46,7 +46,7 @@ export class CreateUsersComponent implements OnInit {
   onDeleteUser(idUser: string): void {
     const confirmation = confirm('Are you sure?');
     if (confirmation) {
-      this.dataApi.deleteProduct(idUser);
+      this.dataApi.deleteUser(idUser);
     }
   }
 
