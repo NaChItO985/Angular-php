@@ -53,5 +53,8 @@ export class ListProductsComponent implements OnInit {
   onPreUpdateBook(product: ProductInterface) {
     this.dataApi.selectedProduct = Object.assign({}, product);
   }
+
+  filterProducts = '';
+
 }
 

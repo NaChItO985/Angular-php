@@ -2,6 +2,7 @@
 <section class="row mt-5">
     <div class="col">
         <button class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalProduct">New Product</button>
+        <input type="text" name="filterProducts" class="form-control" placeholder="Search..." [(ngModel)]='filterProducts'>
         <table class="table table-hover mx-auto">
             <thead>
                 <tr>
@@ -15,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let product of products; index as i">
+                <tr *ngFor="let product of products | filter:filterProducts   index as i">
                     <th scope="row">{{i+1}}</th>
                     <td>{{product.name}}</td>
                     <td>{{product.description}}</td>

@@ -28,6 +28,8 @@ import { ListProductsComponent } from './components/admin/list-products/list-pro
 import { ModalComponent } from './components/modals/modal/modal.component';
 import { CreateUsersComponent } from './components/admin/create-users/create-users.component';
 import { ModalUsersComponent } from './components/modals/modal-users/modal-users.component';
+import { FilterPipe } from './pipes/filter.pipe';
+
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { ModalUsersComponent } from './components/modals/modal-users/modal-users
     ListProductsComponent,
     ModalComponent,
     CreateUsersComponent,
-    ModalUsersComponent
+    ModalUsersComponent,
+    FilterPipe
     
   ],
   imports: [
